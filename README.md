@@ -1,16 +1,14 @@
 # MobileDemoAppModule4
 Demo app made using, and for the purpose of learning ionic
 
-Event Planner App
-Description: This app allows users to plan, manage, and track events such as parties, meetings, or other gatherings.
+Task Manager App
+Description: A simple to-do list and task management app that allows users to log in, register, and manage their tasks.
 
 Features:
 
-Login Screen: Secure login using Firebase Authentication or OAuth (Google, Facebook).
-Registration Screen: Register new users with basic details.
-Event List Page: Display a list of events created by the user.
-Event Details Page: Show detailed information about a selected event.
-Create Event Page: A form to create new events (event name, date, location, description).
-Native Functionality:
-Geolocation: Use the device's location to suggest nearby venues for the event.
-Calendar Access: Add events directly to the user's device calendar.
+Login Screen: Authentication via Firebase or REST API.
+Registration Screen: User registration with validation.
+Task List Page: Display tasks associated with the logged-in user.
+Add Task Page: Form for adding tasks (title, description, due date).
+Task Completion Status: Mark tasks as complete/incomplete.
+
