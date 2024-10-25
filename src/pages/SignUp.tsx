@@ -1,21 +1,21 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonButton } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig';
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory(); 
   const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       history.push('/home'); 
     } catch {
-      setError("Login failed. Please check your credentials.");
+      setError("Sign-up failed. Please try again. Remember to use valid email and that passwords is over 6 characters!");
     }
   };
 
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Sign Up</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -36,11 +36,11 @@ const Login: React.FC = () => {
           <IonInput type="password" value={password} onIonChange={e => setPassword(e.detail.value!)} />
         </IonItem>
         {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-        <IonButton expand="block" onClick={handleLogin}>Login</IonButton>
-        <IonButton expand="block" color="medium" routerLink="/signup">Sign Up</IonButton>
+        <IonButton expand="block" onClick={handleSignUp}>Sign Up</IonButton>
+        <IonButton expand="block" color="medium" routerLink="/login">Back to Login</IonButton>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Login;
+export default SignUp;

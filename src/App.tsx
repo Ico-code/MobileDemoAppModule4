@@ -16,6 +16,18 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import SignUp from './pages/SignUp';
+
+<Switch>
+  <Route exact path="/login" component={Login} />
+  <Route exact path="/signup" component={SignUp} />
+  <Route exact path="/home" component={Home} />
+  <Route exact path="/tasklist" component={TaskList} />
+  <Route exact path="/" render={() => <Redirect to="/login" />} />
+  <Route path="*">
+    <Redirect to="/" />
+  </Route>
+</Switch>
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -53,12 +65,6 @@ import TaskList from "./pages/TaskList";
 setupIonicReact();
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-
-  useEffect(() => {
-    // You can check here if the user is logged in (e.g., from localStorage or an auth API)
-    // and update the loggedIn state accordingly.
-  }, []);
   return (
     <IonApp>
       <IonReactRouter>
@@ -84,18 +90,20 @@ const App: React.FC = () => {
           </IonContent>
         </IonMenu>
         <IonRouterOutlet id="main">
-        <Switch>
-        <Route exact path="/login" component={Login} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/tasklist" component={TaskList} />
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
-          <Route path="*">
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/tasklist" component={TaskList} />
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route path="*">
               <Redirect to="/" />
-          </Route>
-        </Switch>
+            </Route>
+          </Switch>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );
 };
+
 export default App;
