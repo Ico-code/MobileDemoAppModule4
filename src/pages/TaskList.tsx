@@ -40,7 +40,7 @@ const TaskList: React.FC = () => {
       <IonContent>
         <IonList>
           {tasks.map((Task) => (
-            <TaskListItem key={Task.id} Task={Task}></TaskListItem>
+            <TaskListItem key={Task.id} Task={Task} setTasks={setTasks}></TaskListItem>
           ))}
         </IonList>
       </IonContent>

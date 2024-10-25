@@ -22,8 +22,7 @@ export const useService = () => {
       const tasks = getTasks();
       const updatedTasks = tasks.filter((task) => task.id !== id);
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-      // return updatedTasks;
-      window.location.reload();
+      return updatedTasks;
   };
 
   const addTasks = (task:Task) => {

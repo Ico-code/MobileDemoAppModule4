@@ -62,10 +62,6 @@ const App: React.FC = () => {
   const logout = () => {
       history.push("/login"); 
   };
-
-  useEffect(()=> {
-    
-  },[location])
   
   return (
     <IonApp>
