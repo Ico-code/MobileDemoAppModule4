@@ -1,8 +1,15 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import firebaseConfig from "../firebase.json";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
-const container = document.getElementById('root');
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
