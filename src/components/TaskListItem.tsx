@@ -5,8 +5,11 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonIcon,
+  IonButton,
 } from "@ionic/react";
 import { Task } from "../hooks/useTaskListService";
+import { trashOutline } from "ionicons/icons";
 
 interface ListItem {
   Task: Task;
@@ -14,15 +17,16 @@ interface ListItem {
 
 const TaskListItem: React.FC<ListItem> = ({ Task }) => {
   return (
-    <IonItem id={Task.id}>
-      <IonCard>
-        <IonCardHeader>
-          <IonCardTitle>{Task.title}</IonCardTitle>
-          <IonCardSubtitle>{Task.subtitle}</IonCardSubtitle>
-        </IonCardHeader>
-        <IonCardContent>{Task.description}</IonCardContent>
+      <IonCard id={Task.id} className="flexContainer">
+        <div>
+          <IonCardHeader>
+            <IonCardTitle>{Task.title}</IonCardTitle>
+            <IonCardSubtitle>{Task.subtitle}</IonCardSubtitle>
+          </IonCardHeader>
+          <IonCardContent>{Task.description}</IonCardContent>
+        </div>
+        <IonButton color="danger" className="ms-a button-size"><IonIcon icon={trashOutline}></IonIcon></IonButton>
       </IonCard>
-    </IonItem>
   );
 };
 

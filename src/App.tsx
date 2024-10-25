@@ -1,8 +1,11 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import {
   IonApp,
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonItem,
   IonLabel,
   IonList,
@@ -61,6 +64,7 @@ import "./theme/variables.css";
 import { useEffect, useState } from "react";
 import { Component } from "ionicons/dist/types/stencil-public-runtime";
 import TaskList from "./pages/TaskList";
+import { logOutOutline, menuOutline } from "ionicons/icons";
 
 setupIonicReact();
 
@@ -68,6 +72,18 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons>
+              <IonMenuToggle className="me-a button-size menu-icon">
+                <IonIcon icon={menuOutline}></IonIcon>
+              </IonMenuToggle>
+              <IonButton className="logOut">
+                <IonIcon icon={logOutOutline}></IonIcon>
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
         <IonMenu contentId="main">
           <IonHeader>
             <IonToolbar>

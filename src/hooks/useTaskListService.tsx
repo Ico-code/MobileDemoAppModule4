@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { getFirestore, collection, addDoc, getDocs, updateDoc, doc } from 'firebase/firestore';
 
-enum TaskState {
+export enum TaskState {
     completed = "Completed",
     incomplete = "Incomplete"
 }
