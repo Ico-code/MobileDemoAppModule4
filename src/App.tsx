@@ -1,4 +1,4 @@
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import {
   IonApp,
   IonButton,
@@ -20,17 +20,6 @@ import { IonReactRouter } from "@ionic/react-router";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from './pages/SignUp';
-
-<Switch>
-  <Route exact path="/login" component={Login} />
-  <Route exact path="/signup" component={SignUp} />
-  <Route exact path="/home" component={Home} />
-  <Route exact path="/tasklist" component={TaskList} />
-  <Route exact path="/" render={() => <Redirect to="/login" />} />
-  <Route path="*">
-    <Redirect to="/" />
-  </Route>
-</Switch>
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -61,24 +50,35 @@ import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { useEffect, useState } from "react";
-import { Component } from "ionicons/dist/types/stencil-public-runtime";
 import TaskList from "./pages/TaskList";
 import { logOutOutline, menuOutline } from "ionicons/icons";
+import { useEffect } from "react";
 
 setupIonicReact();
 
 const App: React.FC = () => {
+  const history = useHistory();
+
+  const logout = () => {
+      history.push("/login"); 
+  };
+
+  useEffect(()=> {
+    
+  },[location])
+  
   return (
     <IonApp>
       <IonReactRouter>
+        {location.pathname !== '/login' && location.pathname !== '/signup' && (
+        <>
         <IonHeader>
           <IonToolbar>
             <IonButtons>
               <IonMenuToggle className="me-a button-size menu-icon">
                 <IonIcon icon={menuOutline}></IonIcon>
               </IonMenuToggle>
-              <IonButton className="logOut">
+              <IonButton className="logOut" onClick={logout} routerLink="/login">
                 <IonIcon icon={logOutOutline}></IonIcon>
               </IonButton>
             </IonButtons>
@@ -105,6 +105,8 @@ const App: React.FC = () => {
             </IonList>
           </IonContent>
         </IonMenu>
+        </>
+      )}
         <IonRouterOutlet id="main">
           <Switch>
             <Route exact path="/login" component={Login} />

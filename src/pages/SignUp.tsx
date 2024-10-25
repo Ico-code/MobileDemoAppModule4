@@ -13,7 +13,8 @@ const SignUp: React.FC = () => {
   const handleSignUp = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      history.push('/home'); 
+      history.push('/home');
+      window.location.reload();
     } catch {
       setError("Sign-up failed. Please try again. Remember to use valid email and that passwords is over 6 characters!");
     }

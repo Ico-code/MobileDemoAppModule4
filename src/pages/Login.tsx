@@ -13,7 +13,8 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      history.push('/home'); 
+      history.push('/home');
+      window.location.reload();
     } catch {
       setError("Login failed. Please check your credentials.");
     }
