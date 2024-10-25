@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import {
   IonApp,
   IonContent,
@@ -74,29 +74,25 @@ const App: React.FC = () => {
                 <IonItem routerLink="/home">
                   <IonLabel>Home</IonLabel>
                 </IonItem>
-                <IonMenuToggle>
-                  <IonItem routerLink="/tasklist">
-                    <IonLabel>Task List</IonLabel>
-                  </IonItem>
-                </IonMenuToggle>
+              </IonMenuToggle>
+              <IonMenuToggle>
+                <IonItem routerLink="/tasklist">
+                  <IonLabel>Task List</IonLabel>
+                </IonItem>
               </IonMenuToggle>
             </IonList>
           </IonContent>
         </IonMenu>
-        <IonRouterOutlet>
-          <Route exact path="/login" component={Login} />
+        <IonRouterOutlet id="main">
+        <Switch>
+        <Route exact path="/login" component={Login} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/tasklist" component={TaskList} />
           <Route exact path="/" render={() => <Redirect to="/login" />} />
-          {/* {loggedIn ? (
-            <Route path="*">
-            <Redirect to="/home" />
+          <Route path="*">
+              <Redirect to="/" />
           </Route>
-          ) : (
-            <Route path="*">
-          <Redirect to="/login" />
-        </Route>
-          )} */}
+        </Switch>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
