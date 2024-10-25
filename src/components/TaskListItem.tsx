@@ -14,10 +14,11 @@ interface ListItem {
 
 const TaskListItem: React.FC<ListItem> = ({ Task }) => {
   return (
-    <IonItem>
+    <IonItem id={Task.id}>
       <IonCard>
         <IonCardHeader>
           <IonCardTitle>{Task.title}</IonCardTitle>
+          <IonCardSubtitle>{Task.subtitle}</IonCardSubtitle>
         </IonCardHeader>
         <IonCardContent>{Task.description}</IonCardContent>
       </IonCard>

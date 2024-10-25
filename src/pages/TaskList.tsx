@@ -1,23 +1,39 @@
 import TaskListItem from "../components/TaskListItem";
 import React from "react";
 import useService, { Task } from "../hooks/useTaskListService";
-import { IonList, useIonViewWillEnter } from "@ionic/react";
+import {
+  IonContent,
+  IonHeader,
+  IonList,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  useIonViewWillEnter,
+} from "@ionic/react";
 
 const TaskList: React.FC = () => {
   const TaskListService = useService();
   const [Tasks, setTasks] = React.useState<Task[]>([]);
 
   useIonViewWillEnter(() => {
-    console.log("Hello World!");
-    setTasks(TaskListService.getTasks(["1"]));
+    setTasks(TaskListService.getTasks([""]));
   });
 
   return (
-    <IonList>
-      {Tasks.map((Task) => (
-        <TaskListItem Task={Task}></TaskListItem>
-      ))}
-    </IonList>
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Tasks</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <IonList>
+          {Tasks.map((Task) => (
+            <TaskListItem key={Task.id} Task={Task}></TaskListItem>
+          ))}
+        </IonList>
+      </IonContent>
+    </IonPage>
   );
 };
 
