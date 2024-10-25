@@ -9,7 +9,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     console.log("Logged in with Username:", username, "and Password:", password);
-    history.push('/main'); 
+    history.push('/Home'); 
   };
 
   return (
