@@ -11,13 +11,16 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { Task, TaskState } from "../hooks/useTaskListService";
+import { Task, TaskState, useService } from "../hooks/useTaskListService";
 
 const AddTaskModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
   onSave: (task: Task) => void;
 }> = ({ isOpen, onClose, onSave }) => {
+
+  const TaskService = useService();
+
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [description, setDescription] = useState("");
@@ -30,7 +33,18 @@ const AddTaskModal: React.FC<{
       description,
       state: TaskState.incomplete,
     };
+
+    TaskService.addTasks(newTask);
+
+    // Call the onSave prop function to pass the new task to the parent component
     onSave(newTask);
+
+    // Reset the form fields
+    setTitle("");
+    setSubtitle("");
+    setDescription("");
+
+    // Close the modal
     onClose();
   };
 

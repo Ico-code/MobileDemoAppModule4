@@ -1,5 +1,5 @@
 import TaskListItem from "../components/TaskListItem";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useService, { Task } from "../hooks/useTaskListService";
 import {
   IonContent,
@@ -27,7 +27,7 @@ const TaskList: React.FC = () => {
   };
 
   useIonViewWillEnter(() => {
-    setTasks(TaskListService.getTasks([""]));
+    setTasks(TaskListService.getTasks());
   });
 
   return (

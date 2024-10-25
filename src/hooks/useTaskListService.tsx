@@ -14,7 +14,27 @@ export interface Task {
 }
 
 export const useService = () => {
-  const getTasks = (id: string[]): Task[] => {
+  const getTasks = (): Task[] => {
+    return JSON.parse(localStorage.getItem("tasks") || "[]"); 
+  };
+
+  const deleteTasks = (id: string) => {
+      const tasks = getTasks();
+      const updatedTasks = tasks.filter((task) => task.id !== id);
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      // return updatedTasks;
+      window.location.reload();
+  };
+
+  const addTasks = (task:Task) => {
+    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+
+    const updatedTasks = [...existingTasks, task];
+
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
+
+  const defaultTasks = () => {
     return [
       {
         id: "1",
@@ -52,16 +72,13 @@ export const useService = () => {
         state: TaskState.incomplete
       },
     ];
-  };
-  const deleteTasks = () => {};
-  const updateTasks = () => {};
-  const addTasks = () => {};
+  }
 
   return {
     getTasks,
     deleteTasks,
-    updateTasks,
     addTasks,
+    defaultTasks
   };
 };
 
